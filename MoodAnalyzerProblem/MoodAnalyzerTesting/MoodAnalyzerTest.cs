@@ -1,3 +1,4 @@
+
 using MoodAnalyzerProblem;
 using NUnit.Framework;
 
@@ -5,64 +6,31 @@ namespace MoodAnalyzerTesting
 {
     public class Tests
     {
+        MoodAnalyzer mood;
         [SetUp]
         public void Setup()
         {
+            this.mood = new MoodAnalyzer();
         }
         [Test]
         public void GivenSadMessage_WhenAnalyze_ShouldReturnSad()
         {
-            string message = "I am in Sad Mood";
+            //Arrange
             string output = "SAD";
-            MoodAnalyzer mood = new MoodAnalyzer(message);
-            string result = mood.AnalyzeMood();
+            //Act
+            string result = mood.AnalyzeMood("I am in Sad Mood");
+            //Assert
             Assert.AreEqual(output, result);
         }
         [Test]
         public void GivenAnyMessage_WhenAnalyze_ShouldReturnHappy()
         {
-            string message = "I am in Any Mood";
+            //Arrange
             string output = "HAPPY";
-            MoodAnalyzer mood = new MoodAnalyzer(message);
-            string result = mood.AnalyzeMood();
+            //Act
+            string result = mood.AnalyzeMood("I am in Any Mood");
+            //Assert
             Assert.AreEqual(output, result);
-        }
-        [Test]
-        public void GivenNullMessage_WhenAnalyze_ShouldReturnHappy()
-        {
-            string message = null;
-            string output = "HAPPY";
-            MoodAnalyzer mood = new MoodAnalyzer(message);
-            string result = mood.AnalyzeMood();
-            Assert.AreEqual(output, result);
-        }
-        [Test]
-        public void GivenNullMood_WhenAnalyze_ShouldThrowInvalidMoodException()
-        {
-            try
-            {
-                string message = null;
-                MoodAnalyzer mood = new MoodAnalyzer(message);
-                string result = mood.AnalyzeMood();
-            }
-            catch (MoodAnalyzerException e)
-            {
-                Assert.AreEqual("Mood should not be Null", e.Message);
-            }
-        }
-        [Test]
-        public void GivenEMPTYMood_WhenAnalyze_ShouldThrowInvalidMoodException()
-        {
-            try
-            {
-                string message = "";
-                MoodAnalyzer mood = new MoodAnalyzer(message);
-                string result = mood.AnalyzeMood();
-            }
-            catch (MoodAnalyzerException e)
-            {
-                Assert.AreEqual("Mood should not be Empty", e.Message);
-            }
         }
     }
 }
